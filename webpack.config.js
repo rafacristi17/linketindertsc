@@ -2,7 +2,7 @@ const path = require('path');
 const fortTsCheckWebpackPlugin=require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
-    mode: process.env.NODE_ENV,
+    mode: 'development',
   entry: './src/index.ts',
   module: {
     rules: [
