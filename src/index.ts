@@ -14,6 +14,12 @@ interface Candidato {
     tecnologias: Tecnologia[];
 }
 
+interface Empresa {
+    nome: string;
+    habilidades: Habilidade[];
+    tecnologias: Tecnologia[];
+}
+
 let candidatos: Candidato[] = JSON.parse(localStorage.getItem('candidatos')!) || [
     {
         nome: "Candidato 1",
@@ -37,7 +43,6 @@ let candidatos: Candidato[] = JSON.parse(localStorage.getItem('candidatos')!) ||
         ]
     },
 ];
-
 function saveSkills(): void {
     let skillInput: HTMLInputElement = <HTMLInputElement>document.getElementById("skillInput");
     let skillPercent: HTMLInputElement = <HTMLInputElement>document.getElementById("skillPercent");
@@ -47,7 +52,6 @@ function saveSkills(): void {
         displaySkills();
     }
 }
-
 function saveTech(): void {
     let techInput: HTMLInputElement = <HTMLInputElement>document.getElementById("techInput");
     let techPercent: HTMLInputElement = <HTMLInputElement>document.getElementById("techPercent");
@@ -57,7 +61,6 @@ function saveTech(): void {
         displayTech();
     }
 }
-
 function displaySkills() {
     var skillsDiv = document.getElementById("skills")!;
     skillsDiv.innerHTML = "";
@@ -65,7 +68,6 @@ function displaySkills() {
         skillsDiv.innerHTML += '<div class="skill"><span class="name">' + candidatos[0].habilidades[i].habilidade + '</span><div class="bar"><div class="progress" style="width: ' + candidatos[0].habilidades[i].percentual + '%;"></div></div></div>';
     }
 }
-
 function displayTech() {
     var techDiv = document.getElementById("tech")!;
     techDiv.innerHTML = "";
