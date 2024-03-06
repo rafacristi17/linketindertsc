@@ -12,27 +12,15 @@
     <div class="card">
         <img class="avatar" src="../img/user2.png" style="width: 30%" alt="Avatar">
         <div class="container">
-            <h1>Empresa</h1>
-            <p class="title"><h2>Cadastre suas vagas</h2></p>
-            <p><h4>Digite informações sobre a vaga</h4></p>
-            <h2>Habilidades</h2>
-            <input type="text" id="skillInput" placeholder="Adicionar habilidade...">
-            <input type="number" id="skillPercent" placeholder="Porcentagem de proficiência...">
-            <button onclick="saveSkills()">Salvar Habilidade</button>  <button onclick="deleteSkills()">Deletar THabilidade</button>
-            <div id="skills" class="skills">
+            <h1>Bem Vindo, <span id="empresa"></span>!</h1>
+            <p> <span id="emailCorporativo"></span></p>
+            <div> 
+            
+                <button >Clique aqui e pesquise por Candidatos</button> <button> Adicionar Vagas</button>  <button onclick="goBack()">Voltar</button>
+           
+            </div>        
               
             </div>
-            <h2>Tecnologias</h2>
-            <input type="text" id="techInput" placeholder="Adicionar tecnologia...">
-            <input type="number" id="techPercent" placeholder="Porcentagem de proficiência...">
-            <button onclick="saveTech()">Salvar Tecnologia</button> <button onclick="deleteTech()">Deletar Tecnologia</button>
-            <div id="tech" class="skills">
-              
-            </div>
-        </div>
-        <div> 
-            <button onclick="goBack()">Voltar</button>
-            <button >Clique aqui e pesquise por Candidatos</button>
         </div>
     </div>
     <script src="index.js" defer></script>
