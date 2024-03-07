@@ -23,8 +23,42 @@ let candidatos: Candidato[] = JSON.parse(localStorage.getItem('candidatos')!) ||
 let form= document.querySelector('form') as HTMLFormElement;
 
 form.addEventListener('submit', function(event:Event){
-event.preventDefault();
-})
+    event.preventDefault();
+    let candidato: Candidato = {
+        nome: (document.getElementById('nome') as HTMLInputElement).value,
+        email: (document.getElementById('email') as HTMLInputElement).value,
+        cpf: (document.getElementById('cpf') as HTMLInputElement).value,
+        date: (document.getElementById('date') as HTMLInputElement).value,
+        estado: (document.getElementById('estado') as HTMLInputElement).value,
+        message: (document.getElementById('message') as HTMLInputElement).value,
+        senha: (document.getElementById('senha') as HTMLInputElement).value,
+        tecnologias: {
+            mysql: (document.querySelector('input[name="mysql"]') as HTMLInputElement).checked,
+            java: (document.querySelector('input[name="java"]') as HTMLInputElement).checked,
+            node: (document.querySelector('input[name="node"]') as HTMLInputElement).checked,
+            typescript: (document.querySelector('input[name="typescript"]') as HTMLInputElement).checked,
+            javascript: (document.querySelector('input[name="javascript"]') as HTMLInputElement).checked,
+            git: (document.querySelector('input[name="git"]') as HTMLInputElement).checked,
+        }
+    };
+    if (validarCandidato(candidato)) {
+        candidatos.push(candidato);
+        localStorage.setItem('candidatos', JSON.stringify(candidatos));
+        console.log('Candidato cadastrado com sucesso!');
+    }
+});
+
+function validarCandidato(candidato:Candidato){
+    if (!candidato.email.includes('@')) {
+        console.log('Email inválido!');
+        return false;
+    }
+    if (candidato.senha.length < 8) {
+        console.log('Senha muito curta!');
+        return false;
+    }
+    return true;
+}
 
 function openTab(evt: Event, tabName: string): void {
     let i: number;
