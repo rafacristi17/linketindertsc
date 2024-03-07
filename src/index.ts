@@ -20,6 +20,12 @@ interface Candidato {
 
 let candidatos: Candidato[] = JSON.parse(localStorage.getItem('candidatos')!) || [];
 
+let form= document.querySelector('form') as HTMLFormElement;
+
+form.addEventListener('submit', function(event:Event){
+event.preventDefault();
+})
+
 function openTab(evt: Event, tabName: string): void {
     let i: number;
     let tabcontent: HTMLCollectionOf<Element>;
