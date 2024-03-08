@@ -59,7 +59,14 @@ function validarCandidato(candidato:Candidato){
     }
     return true;
 }
-
+(window as any).openTab = function(evt: Event, tabName: string): void  {
+    let candidatos = JSON.parse(localStorage.getItem('candidatos')!);
+    if (candidatos) {
+        let candidato = candidatos[candidatos.length - 1];
+        document.getElementById('candidato')!.textContent = candidato.nome;
+        document.getElementById('email')!.textContent = candidato.email;
+    }
+}
 function openTab(evt: Event, tabName: string): void {
     let i: number;
     let tabcontent: HTMLCollectionOf<Element>;
