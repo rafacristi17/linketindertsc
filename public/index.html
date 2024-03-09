@@ -10,105 +10,16 @@
 </head>
     
 <body>
+        
+    <h1>Acesso Linketinder</h1>
     
-    <h2>Acesso Linketinder</h2>
-    <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'Candidato')">Candidato</button>
-        <button class="tablinks" onclick="openTab(event, 'Empresa')">Empresa</button>
+    <div class="tab" style="display: center">
+        <button class="tablinks" onclick="window.location.href='cadastrocandidato.html'">Candidato</button>
+        <button class="tablinks" onclick="window.location.href='cadastroempresa.html'">Empresa</button>
+        <button class="tablinks" onclick="window.location.href='index.html'">Home</button>
     </div>
-    <div id="Candidato" class="tabcontent">
-        <h3>Candidato</h3>
-        <form action="candidato.html" method="post">
-
-            <label for="nome">Nome:</label><br>
-            <input type="text" id="nome" name="nome"><br>
-
-            <label for="cpf">CPF:</label><br>
-            <input type="text" id="cpf" name="cpf"><br>
-
-            <label for="date">Data de Nascimento:</label><br>
-            <input type="date" id="date" name="date"><br>
-
-            <label for="estado">Estado:</label><br>
-            <input type="text" id="estado" name="estado"><br>
-
-            <h3> Faça sua descrição Profissional:</h3>
-            <textarea name="mensagem" id="message" cols="30" rows="3" ></textarea><br>
-
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email"><br>
-
-            <label for="senha">Senha:</label><br>
-            <input type="password" id="senha" name="senha"><br>
-            <div>
-                <h3>Selecione as tecnologias de seu conhecimento: </h3>
-                <label>MySQL </label><input type="checkbox" name="mysql" >
-                <label>Java </label><input type="checkbox" name="java" >
-                <label>Node </label><input type="checkbox" name="node" >
-                <label>Typescript </label><input type="checkbox" name="typescript" >
-                <label>Javascript </label><input type="checkbox" name="javascript" >
-                <label>Git </label><input type="checkbox" name="mysql" >  <br><br>        
-            </div>
-            <input type="submit" value="Cadastrar/Entrar">
-              <a href="candidato.html"></a>
-        </form>
+    <div class="image-container">
+    <img src="./lt.jpeg" alt="logo Linketinder" class="center-image" >
     </div>
-    <div id="Empresa" class="tabcontent">
-        <h3>Empresa</h3>
-        <form action="empresa.html" method="post">
-
-            <label for="nome">Nome:</label><br>
-            <input type="text" id="nome" name="nome"><br>
-
-            <label for="email">Email Corporativo:</label><br>
-            <input type="email" id="email" name="email"><br>
-
-            <label for="cnpj">CNPJ:</label><br>
-            <input type="text" id="cnpj" name="cnpj"><br>
-
-            <label for="pais">País:</label><br>
-            <input type="text" id="pais" name="pais"><br>
-
-            <label for="estado">Estado:</label><br>
-            <input type="text" id="estado" name="estado"><br>
-
-            <label for="cep">CEP:</label><br>
-            <input type="text" id="cep" name="cep"><br>
-
-            <h3> Descrição da Empresa:</h3>
-            <textarea name="mensagem" id="message" cols="30" rows="3" ></textarea><br><br> 
-
-                <form method="post">
-                    <input type="submit" value="Add+ Vagas"> 
-                    <h3> Cadastre suas vagas:</h3>
-                    <br> <br>                 
-                 <label for="titulovaga">Título da Vaga:</label><br>
-                 <input type="text" id="titulovaga" name="titulovaga"><br>
-
-                 <div>
-                    <h3>Tecnologias: </h3>
-                    <label>MySQL </label><input type="checkbox" name="mysql" >
-                    <label>Java </label><input type="checkbox" name="java" >
-                    <label>Node </label><input type="checkbox" name="node" >
-                    <label>Typescript </label><input type="checkbox" name="typescript" >
-                    <label>Javascript </label><input type="checkbox" name="javascript" >
-                    <label>Git </label><input type="checkbox" name="mysql" >  <br><br>        
-                </div>       
-                <h3> Descrição da Vaga:</h3>
-            <textarea name="mensagem" id="message" cols="30" rows="3" ></textarea><br>
-
-                </form>
-
-            <label for="senha">Senha:</label><br>
-            <input type="password" id="senha" name="senha"><br>
-            <br>
-            <br>
-
-           <input type="submit" value="Editar Vaga">  <button type="submit">Deletar</button>
-           <input type="submit" value="Cadastar/Entrar">
-        </form>
-    </div>
-   
-    
 </body>
 </html>

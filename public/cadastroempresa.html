@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<link rel="stylesheet" href="style.css">    
+</head>
+
+<body class="empresa">
+    <script src="index.js" defer></script> 
+  
+    <div id="cadastroempresa" class="tabcontent">
+        <h3>Cadastro Empresa</h3>
+    <form action="#" method="post" id="meuFormularioEmpresa">
+
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome"><br>
+
+        <label for="email">Email Corporativo:</label><br>
+        <input type="email" id="email" name="email"><br>
+
+        <label for="cnpj">CNPJ:</label><br>
+        <input type="text" id="cnpj" name="cnpj"><br>
+
+        <label for="pais">País:</label><br>
+        <input type="text" id="pais" name="pais"><br>
+
+        <label for="estado">Estado:</label><br>
+        <input type="text" id="estado" name="estado"><br>
+
+        <label for="cep">CEP:</label><br>
+        <input type="text" id="cep" name="cep"><br>
+
+        <h3> Descrição da Empresa:</h3>
+        <textarea name="mensagem" id="message" cols="30" rows="3" ></textarea><br><br> 
+
+            <form method="post">
+                <input type="submit" value="Add+ Vagas"> 
+                <h3> Cadastre suas vagas:</h3>
+                <br> <br>                 
+             <label for="titulovaga">Título da Vaga:</label><br>
+             <input type="text" id="titulovaga" name="titulovaga"><br>
+
+             <div>
+                <h3>Tecnologias: </h3>
+                <label>MySQL </label><input type="checkbox" name="mysql" >
+                <label>Java </label><input type="checkbox" name="java" >
+                <label>Node </label><input type="checkbox" name="node" >
+                <label>Typescript </label><input type="checkbox" name="typescript" >
+                <label>Javascript </label><input type="checkbox" name="javascript" >
+                <label>Git </label><input type="checkbox" name="git" >  <br><br>        
+            </div>       
+            <h3> Descrição da Vaga:</h3>
+        <textarea name="mensagem" id="message" cols="30" rows="3" ></textarea><br>
+
+            </form>
+
+        <label for="senha">Senha:</label><br>
+        <input type="password" id="senha" name="senha"><br>
+        <br>
+        <br>
+
+       <input type="submit" value="Cadastar/Entrar"> <button onclick="window.location.href='index.html'">Voltar</button>
+    </form>
+</div>
