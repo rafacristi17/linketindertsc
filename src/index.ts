@@ -18,3 +18,43 @@ candidatos.push(novoCandidato);
 
 submitForm();
 loadCandidato();
+
+import{Empresa, empresas, submitFormE, loadEmpresa} from './empresa'
+
+let nomeE = 'nomeE';
+let emailE = 'emailE';
+let cnpjE = 'cnpjE';
+let paisE = 'paisE';
+let estadoE = 'estadoE';
+let cepE = 'cepE';
+let descricaoE = 'descricaoE';
+let titulovagaE = 'titulovagaE';
+let descricaovagaE = 'descricaovagaE';
+let senhaE = 'senhaE';
+
+let checkbox = document.querySelectorAll('input[type-checbox]:checked');
+let tecnologiasvagaE = Array.from(checkbox).map(c=>(c as HTMLInputElement).value);
+
+let novaEmpresa = new Empresa(nomeE, emailE, cnpjE, paisE, estadoE, cepE, descricaoE,titulovagaE, descricaovagaE, tecnologiasvagaE, senhaE) 
+
+empresas.push(novaEmpresa);
+
+submitFormE();
+loadEmpresa();
+
+import{Vaga, vagas, addVaga, deleteVaga} from './empresa'
+
+let titulovaga = 'titulovaga';
+let descricaovaga = 'descricaovaga';
+
+let checkboxV = document.querySelectorAll('input[type-checbox]:checked');
+let tecnologiasvaga = Array.from(checkboxV).map(c=>(c as HTMLInputElement).value);
+
+let novaVaga = new Vaga (titulovaga,descricaovaga, tecnologiasvaga)
+
+vagas.push(novaVaga)
+
+addVaga();
+deleteVaga();
+
+
