@@ -1,60 +1,55 @@
-import { Candidato, candidatos, submitForm, loadCandidato } from './candidato'
-
-let nome = "Nome";
-let cpf = "CPF";
-let dataNascimento = "Data de Nascimento";
-let estado = "Estado";
-let descricaoProfissional = "Descrição Profissional";
-let email = "Email";
-let senha = "Senha";
-
-let checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
-let tecnologias = Array.from(checkboxes).map(c => (c as HTMLInputElement).value);
+import { Candidato, candidatos, submitForm as submitFormCandidato, loadCandidato } from './candidato'
+import { Empresa, empresas, submitForm as submitFormEmpresa, loadEmpresa } from './empresa'
 
 
-let novoCandidato = new Candidato(nome, cpf, dataNascimento, estado, descricaoProfissional, email, senha, tecnologias);
+function criarCandidato() {
+    let nome = "Nome";
+    let cpf = "CPF";
+    let dataNascimento = "Data de Nascimento";
+    let estado = "Estado";
+    let descricaoProfissional = "Descrição Profissional";
+    let email = "Email";
+    let senha = "Senha";
 
-candidatos.push(novoCandidato);
+    let checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+    let tecnologias = Array.from(checkboxes).map(c => (c as HTMLInputElement).value);
 
-submitForm();
-loadCandidato();
+    let novoCandidato = new Candidato(nome, cpf, dataNascimento, estado, descricaoProfissional, email, senha, tecnologias);
 
-import{Empresa, empresas, submitFormE, loadEmpresa} from './empresa'
+    candidatos.push(novoCandidato);
 
-let nomeE = 'nomeE';
-let emailE = 'emailE';
-let cnpjE = 'cnpjE';
-let paisE = 'paisE';
-let estadoE = 'estadoE';
-let cepE = 'cepE';
-let descricaoE = 'descricaoE';
-let titulovagaE = 'titulovagaE';
-let descricaovagaE = 'descricaovagaE';
-let senhaE = 'senhaE';
+    submitFormCandidato();
+    loadCandidato();
+}
 
-let checkbox = document.querySelectorAll('input[type-checbox]:checked');
-let tecnologiasvagaE = Array.from(checkbox).map(c=>(c as HTMLInputElement).value);
+function criarEmpresa() {
+    let nome = 'nome';
+    let email = 'email';
+    let cnpj= 'cnpj';
+    let pais = 'pais';
+    let estado = 'estado';
+    let cep = 'cep';
+    let descricao = 'descricao';
+    let titulovaga = 'titulovaga';
+    let descricaovaga= 'descricaovaga';
+    let senha = 'senha';
 
-let novaEmpresa = new Empresa(nomeE, emailE, cnpjE, paisE, estadoE, cepE, descricaoE,titulovagaE, descricaovagaE, tecnologiasvagaE, senhaE) 
+    let checkbox = document.querySelectorAll('input[type=checkbox]:checked');
+    let tecnologiasvaga = Array.from(checkbox).map(c=>(c as HTMLInputElement).value);
 
-empresas.push(novaEmpresa);
+    let novaEmpresa = new Empresa(nome, email, cnpj, pais, estado, cep, descricao,titulovaga, descricaovaga, tecnologiasvaga, senha) 
 
-submitFormE();
-loadEmpresa();
+    empresas.push(novaEmpresa);
 
-import{Vaga, vagas, addVaga, deleteVaga} from './empresa'
+    submitFormEmpresa();
+    loadEmpresa();
+}
 
-let titulovaga = 'titulovaga';
-let descricaovaga = 'descricaovaga';
+criarCandidato();
+criarEmpresa();
 
-let checkboxV = document.querySelectorAll('input[type-checbox]:checked');
-let tecnologiasvaga = Array.from(checkboxV).map(c=>(c as HTMLInputElement).value);
 
-let novaVaga = new Vaga (titulovaga,descricaovaga, tecnologiasvaga)
 
-vagas.push(novaVaga)
 
-addVaga();
-deleteVaga();
 
 
