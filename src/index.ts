@@ -1,5 +1,5 @@
-import { Candidato, candidatos, submitForm as submitFormCandidato, loadCandidato } from './candidato'
-import { Empresa, empresas, submitForm as submitFormEmpresa, loadEmpresa } from './empresa'
+import { Candidato,candidatos, submitForm, loadCandidato } from './candidato'
+import { Empresa, empresas, submitEmpresaForm, loadEmpresa, getEmpresasInfo, gerarGraficoTecnologias } from './empresa'
 
 
 function criarCandidato() {
@@ -10,21 +10,20 @@ function criarCandidato() {
     let descricaoProfissional = "Descrição Profissional";
     let email = "Email";
     let senha = "Senha";
-
     let checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
     let tecnologias = Array.from(checkboxes).map(c => (c as HTMLInputElement).value);
 
     let novoCandidato = new Candidato(nome, cpf, dataNascimento, estado, descricaoProfissional, email, senha, tecnologias);
-
     candidatos.push(novoCandidato);
 
-    submitFormCandidato();
+    submitForm();
     loadCandidato();
 }
 
 function criarEmpresa() {
     let nome = 'nome';
     let email = 'email';
+    let senha = 'senha';
     let cnpj= 'cnpj';
     let pais = 'pais';
     let estado = 'estado';
@@ -32,24 +31,18 @@ function criarEmpresa() {
     let descricao = 'descricao';
     let titulovaga = 'titulovaga';
     let descricaovaga= 'descricaovaga';
-    let senha = 'senha';
-
     let checkbox = document.querySelectorAll('input[type=checkbox]:checked');
-    let tecnologiasvaga = Array.from(checkbox).map(c=>(c as HTMLInputElement).value);
+    let tecnologias = Array.from(checkbox).map(c=>(c as HTMLInputElement).value);
 
-    let novaEmpresa = new Empresa(nome, email, cnpj, pais, estado, cep, descricao,titulovaga, descricaovaga, tecnologiasvaga, senha) 
-
+    let novaEmpresa = new Empresa(nome, email, senha, cnpj, pais, estado, cep, descricao, descricaovaga, titulovaga, tecnologias);
     empresas.push(novaEmpresa);
 
-    submitFormEmpresa();
+    submitEmpresaForm();
     loadEmpresa();
+    getEmpresasInfo();
+    gerarGraficoTecnologias();
+    
 }
 
 criarCandidato();
 criarEmpresa();
-
-
-
-
-
-

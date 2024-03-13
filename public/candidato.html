@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-<link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body class="candidato">
     <script src="index.js" defer></script>
@@ -20,11 +20,14 @@
             <p>Descrição Profissional: <span id="descricaoProfissional"></span></p>
             <p>Email: <span id="email"></span></p>
             <p>Tecnologias: <span id="tecnologias"></span></p>
-            <div> 
-                <button >Clique aqui e pesquise por vagas</button>   <button onclick="window.location.href='index.html'">Voltar</button>
+            <div id="empresasInfo">
+                <button id="btnEmpresas" onclick="">Clique aqui e pesquise por empresas cadastradas</button>
+             </div>                
+             <button onclick="document.getElementById('grafico').innerText = gerarGraficoTecnologias()">Gerar gráfico das vagas pelas tecnologias</button>
+             <button onclick="window.location.href='index.html'">Voltar</button>
             </div>          
         </div>
-    </div>
+        <div id="grafico"></div>
 
-</body>
-</html>
+    </body>
+    </html>
