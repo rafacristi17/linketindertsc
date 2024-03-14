@@ -19,7 +19,7 @@ export class Candidato {
         this.senha = senha;
         this.tecnologias = tecnologias;
     }
-}
+};
 
 export let candidatos: Candidato[] = JSON.parse(localStorage.getItem('candidatos') || '[]');
 
