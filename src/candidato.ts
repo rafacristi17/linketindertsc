@@ -65,7 +65,7 @@ export function loadCandidato() {
         if (descricaoProfissionalElement) descricaoProfissionalElement.textContent = candidatoAtual.descricaoProfissional;
         if (emailElement) emailElement.textContent = candidatoAtual.email;
         if (tecnologiasElement) tecnologiasElement.textContent = candidatoAtual.tecnologias.join(', ');
-    }
+    } 
 }
    export function getCandidatosInfo(){
     let candidatos: Candidato[] = JSON.parse(localStorage.getItem('candidatos') || '[]');
