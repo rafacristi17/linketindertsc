@@ -9,8 +9,7 @@
 </head>
 <body class="empresa">
     <script src="index.js" defer></script>
-
-    <div class="card">
+      <div class="card">
         <img class="avatar" src="user2.png" style="width: 30%" alt="Avatar" display="flex">
         <div class="container">
 
@@ -25,10 +24,14 @@
             <p>Descrição da Vaga: <span id="descricaovaga"></span></p>
             <p>Tecnologias: <span id="tecnologias"></span></p>
         
-            <div> 
-                <button >Clique aqui e pesquise por Candidatos</button> 
-            </div>      
-        </div>
+            <div id="candidatosInfo">
+                <button id="btnCandidatos" onclick="">Clique aqui e pesquise por candidatos cadastradas</button>
+             </div>   
+             <div id="graficos">
+                <button id="btnGerarGrafico">Gerar gráfico de quantidade de vagas por tecnologias</button>
+             </div>
+             <canvas id="myChart"></canvas>
+            </div>
         <button onclick="window.location.href='index.html'">Voltar</button>
     </div>
 </body>

@@ -4,30 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
     <link rel="stylesheet" href="style.css"> 
 </head>
 <body class="candidato">
     <script src="index.js" defer></script>
-   
+
     <div class="card">
         <img class="avatar" src="user1.png" style="width: 30%" alt="Avatar" display="flex">
         <div class="container">
             <h1>Bem Vindo, <span id="candidato"></span>!</h1>
             <p>CPF: <span id="cpf"></span></p>
-            <p>Data de Nascimento: <span id="dataNascimento"></span></p>
+            <p>Data de Nascimento: <span id="date"></span></p>
             <p>Estado: <span id="estado"></span></p>
             <p>Descrição Profissional: <span id="descricaoProfissional"></span></p>
             <p>Email: <span id="email"></span></p>
             <p>Tecnologias: <span id="tecnologias"></span></p>
-            <div id="empresasInfo">
-                <button id="btnEmpresas" onclick="">Clique aqui e pesquise por empresas cadastradas</button>
-             </div>                
-             <button onclick="document.getElementById('grafico').innerText = gerarGraficoTecnologias()">Gerar gráfico das vagas pelas tecnologias</button>
-             <button onclick="window.location.href='index.html'">Voltar</button>
-            </div>          
         </div>
-        <div id="grafico"></div>
+        <div id="empresasInfo">
+            <button id="btnEmpresas">Clique aqui e pesquise por empresas cadastradas</button>
+        </div>                
+            <button onclick="window.location.href='index.html'">Voltar</button>
+    </div>
 
-    </body>
-    </html>
+    <script>
+        loadCandidato();
+    </script>
+</body>
+</html>

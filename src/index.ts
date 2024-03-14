@@ -1,5 +1,5 @@
-import { Candidato,candidatos, submitForm, loadCandidato } from './candidato'
-import { Empresa, empresas, submitEmpresaForm, loadEmpresa, getEmpresasInfo, gerarGraficoTecnologias } from './empresa'
+import { Candidato,candidatos, submitForm, loadCandidato , getCandidatosInfo} from './candidato'
+import { Empresa, empresas, submitEmpresaForm, loadEmpresa, getEmpresasInfo } from './empresa'
 
 
 function criarCandidato() {
@@ -18,6 +18,8 @@ function criarCandidato() {
 
     submitForm();
     loadCandidato();
+    getCandidatosInfo();
+     
 }
 
 function criarEmpresa() {
@@ -40,8 +42,7 @@ function criarEmpresa() {
     submitEmpresaForm();
     loadEmpresa();
     getEmpresasInfo();
-    gerarGraficoTecnologias();
-    
+        
 }
 
 criarCandidato();

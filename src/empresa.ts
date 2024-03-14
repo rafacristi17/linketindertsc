@@ -1,3 +1,5 @@
+import { getCandidatosInfo} from './candidato';
+
 export class Empresa {
     nome: string;
     email: string;
@@ -10,6 +12,7 @@ export class Empresa {
     titulovaga: string;
     descricaovaga: string;
     tecnologias: string[];
+
     constructor( nome: string, email: string, senha: string, cnpj: string, pais: string,  estado: string, cep: string, descricao: string, titulovaga: string, descricaovaga: string, tecnologias: string[]){
     this.nome = nome;
     this.email = email;
@@ -43,16 +46,6 @@ export function submitEmpresaForm(){
         let empresa = new Empresa(nome, email, senha, cnpj, pais, estado, cep, descricao, titulovaga, descricaovaga, tecnologias);
         empresas.push(empresa)
         localStorage.setItem('empresas', JSON.stringify(empresas));
-        let tecnologiasCliques = JSON.parse(localStorage.getItem('tecnologiasCliques') || '{}');
-            tecnologias.forEach(tecnologia => {
-                if(tecnologiasCliques[tecnologia]) {
-                    tecnologiasCliques[tecnologia]++;
-                } else {
-                    tecnologiasCliques[tecnologia] = 1;
-                }
-            });
-            localStorage.setItem('tecnologiasCliques', JSON.stringify(tecnologiasCliques));
-
         window.location.href = 'empresa.html';
     }else {
         alert('Por favor, preencha todos os campos.');
@@ -102,16 +95,39 @@ export function getEmpresasInfo() {
             tecnologias: empresa.tecnologias
             
         }; });}
-        export function gerarGraficoTecnologias() {
-            let tecnologiasCliques: { [key: string]: number } = JSON.parse(localStorage.getItem('tecnologiasCliques') || '{}');
-            let grafico = '';
-            for(let tecnologia in tecnologiasCliques) {
-                grafico += `${tecnologia}: ${'*'.repeat(tecnologiasCliques[tecnologia])}\n`;
-            }        
-            return grafico;
+        function ocultarDados(dado: string): string {
+            if (!dado) {
+                return 'N/A';
+            }
+            const tamanho = dado.length;
+            let oculto = '';
+            for(let i = 0; i < tamanho; i++) {
+                oculto += '*';
+            }
+            return oculto;
         }
+     
         
-        if (typeof window !== 'undefined') {
-            (window as any).gerarGraficoTecnologias = gerarGraficoTecnologias;
+document.addEventListener('DOMContentLoaded', (event) => {
+    event.preventDefault();
+    document.getElementById('btnCandidatos')?.addEventListener('click', () => {
+        let candidatosInfo = getCandidatosInfo();
+        let candidatosInfoElement = document.getElementById('candidatosInfo') as HTMLElement;
+        candidatosInfoElement = candidatosInfoElement ?? document.createElement('div');
+        if(candidatosInfoElement) {
+            candidatosInfoElement.innerHTML = '';
+            candidatosInfo.forEach((info, index) => {
+                candidatosInfoElement.innerHTML += `
+                    <h2>Candidatos ${index + 1}</h2>
+                    <p>Nome: ${ocultarDados(info.nome)}<p>
+                    <p>Email: ${ocultarDados(info.email)}<p>
+                    <p>CPF: ${ocultarDados(info.cpf)}</p>
+                    <p>Data de nascimento:  ${ocultarDados(info.dataNascimento)}</p>
+                    <p>Estado: ${ocultarDados(info.estado)}</p>
+                    <p>Descrição Profissional: ${info.descricaoProfissional}</p>
+                    <p>Tecnologias: ${info.tecnologias ? info.tecnologias.join(', ') : 'N/A'}</p>
+                    <hr>
+                `;
+            });
         }
-        
+    })});

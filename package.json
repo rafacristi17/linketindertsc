@@ -19,6 +19,7 @@
     "webpack-dev-server": "^5.0.2"
   },
   "dependencies": {
-    "@types/chart.js": "^2.9.41"
+    "@types/chart.js": "^2.9.41",
+    "chart.js": "^4.4.2"
   }
 }
