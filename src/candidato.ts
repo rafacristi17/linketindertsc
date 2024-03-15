@@ -24,7 +24,7 @@ export class Candidato {
 export let candidatos: Candidato[] = JSON.parse(localStorage.getItem('candidatos') || '[]');
 
 export function submitForm() {
-    document.getElementById('meuFormulario')?.addEventListener('submit', (event) => {
+    document.getElementById('meuFormulario')?.addEventListener('submit', (event: Event) => {
         event.preventDefault();
         let nome = (document.getElementById('nome') as HTMLInputElement).value;
         let cpf = (document.getElementById('cpf') as HTMLInputElement).value;
@@ -35,16 +35,39 @@ export function submitForm() {
         let senha = (document.getElementById('senha') as HTMLInputElement).value;
         let tecnologias = Array.from(document.querySelectorAll('input[type=checkbox]:checked')).map(cb => (cb as HTMLInputElement).name);
 
-        if (nome && cpf && dataNascimento && estado && descricaoProfissional && email && senha && tecnologias.length > 0) {
+        const nomeRegex = /^[a-zA-Z\s]*$/; 
+        const cpfRegex = /^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$/;
+        const dataNascimentoRegex = /^\d{4}-\d{2}-\d{2}$/; 
+        const estadoRegex = /^[a-zA-Z]{2}$/;
+        const descricaoProfissionalRegex = /^[a-zA-Z\s]*$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const senhaRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{1,8}$/; 
+
+        if (!nome || !nomeRegex.test(nome)) {
+            alert('Por favor, preencha o campo nome corretamente.');
+        } else if (!cpf || !cpfRegex.test(cpf)) {
+            alert('Por favor, preencha o campo CPF corretamente.');
+        } else if (!dataNascimento || !dataNascimentoRegex.test(dataNascimento)) {
+            alert('Por favor, preencha o campo data de nascimento corretamente.');
+        } else if (!estado || !estadoRegex.test(estado)) {
+            alert('Por favor, preencha o campo estado corretamente.');
+        } else if (!descricaoProfissional || !descricaoProfissionalRegex.test(descricaoProfissional)) {
+            alert('Por favor, preencha o campo descrição profissional corretamente.');
+        } else if (!email || !emailRegex.test(email)) {
+            alert('Por favor, preencha o campo email corretamente.');
+        } else if (!senha || !senhaRegex.test(senha)) {
+            alert('Por favor, preencha o campo senha corretamente. A senha deve ter até 8 caracteres, com pelo menos uma letra, um número e um caractere especial.');
+        } else if (tecnologias.length === 0) {
+            alert('Por favor, selecione pelo menos uma tecnologia.');
+        } else {
             let candidato = new Candidato(nome, cpf, dataNascimento, estado, descricaoProfissional, email, senha, tecnologias);
             candidatos.push(candidato);
             localStorage.setItem('candidatos', JSON.stringify(candidatos));
             window.location.href = "candidato.html";
-        } else {
-            alert('Por favor, preencha todos os campos.');
         }
     });
 }
+
 export function loadCandidato() {
     let candidatos: Candidato[] = JSON.parse(localStorage.getItem('candidatos') || '[]');
     let candidatoAtual: Candidato = candidatos[candidatos.length - 1];

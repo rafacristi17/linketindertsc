@@ -27,6 +27,7 @@ export class Empresa {
     this.tecnologias = tecnologias;
 }}
 export let empresas: Empresa[] = JSON.parse(localStorage.getItem('empresas') || '[]');
+
 export function submitEmpresaForm(){
     document.getElementById('meuFormularioEmpresa')?.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -41,15 +42,49 @@ export function submitEmpresaForm(){
     let titulovaga = (document.getElementById('titulovaga') as HTMLInputElement).value;
     let descricaovaga = (document.getElementById('descricaovaga') as HTMLInputElement).value;
     let tecnologias = Array.from(document.querySelectorAll('input[type=checkbox]:checked')).map(cb => (cb as HTMLInputElement).name);
-    
-    if(nome && email && senha && cnpj && pais && estado && cep && descricao && titulovaga && descricaovaga && tecnologias.length > 0) {
-        let empresa = new Empresa(nome, email, senha, cnpj, pais, estado, cep, descricao, titulovaga, descricaovaga, tecnologias);
-        empresas.push(empresa)
+
+    const nomeRegex = /^[a-zA-Z\s]*$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const senhaRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{1,8}$/; 
+    const cnpjRegex = /^[0-9]{2}\.[0-9]{3}\.[0-9]{3}\/[0-9]{4}\-[0-9]{2}$/;
+    const paisRegex = /^[a-zA-Z\s]*$/;
+    const estadoRegex = /^[a-zA-Z]{2}$/;
+    const cepRegex = /^[0-9]{5}-?[0-9]{3}$/;
+    const descricaoRegex =/^[a-zA-Z\s]*$/;
+    const titulovagaRegex = /^[a-zA-Z\s]*$/;
+    const descricaovagaRegex = /^[a-zA-Z\s]*$/;
+
+    if(!nome || !nomeRegex.test(nome)){   
+    alert('Por favor, preencha o campo nome corretamente.');
+    } else if (!email || !emailRegex.test(email)) {
+        alert('Por favor, preencha o campo email corretamente.');
+    } else if (!senha || !senhaRegex.test(senha)) {
+        alert('Por favor, preencha o campo senha corretamente. A senha deve ter até 8 caracteres, com pelo menos uma letra, um número e um caractere especial.');
+    } else if (!cnpj || !cnpjRegex.test(cnpj)) {
+        alert('Por favor, preencha o campo CNPJ corretamente.');
+    } else if (!pais || !paisRegex.test(pais)){   
+        alert('Por favor, preencha o campo País corretamente.');
+    } else if (!estado || !estadoRegex.test(estado)) {
+        alert('Por favor, preencha o campo estado corretamente.');
+    } else if (!cep || !cepRegex.test(cep)) {
+        alert('Por favor, preencha o campo cep corretamente.');           
+    } else if (!descricao || !descricaoRegex.test(descricao)) {
+        alert('Por favor, preencha o campo descrição da Empresa corretamente.');
+    } else if (!titulovaga || !titulovagaRegex.test(titulovaga)) {
+        alert('Por favor, preencha o campo Título Vaga corretamente.');
+    } else if (!descricaovaga || !descricaovagaRegex.test(descricaovaga)) {
+        alert('Por favor, preencha o campo descrição da Vaga corretamente.');
+    } else if (tecnologias.length === 0) {
+        alert('Por favor, selecione pelo menos uma tecnologia.');
+    } else {
+        let empresa = new Empresa (nome, email, senha, cnpj, pais, estado, cep, descricao, titulovaga, descricaovaga, tecnologias);
+        empresas.push(empresa);
         localStorage.setItem('empresas', JSON.stringify(empresas));
-        window.location.href = 'empresa.html';
-    }else {
-        alert('Por favor, preencha todos os campos.');
-    }})};
+        window.location.href = "empresa.html";
+    }
+    });
+    }
+
 export function loadEmpresa(){
     window.onload = function(){
         let empresas: Empresa[] = JSON.parse(localStorage.getItem('empresas') || '[]');
@@ -79,6 +114,7 @@ export function loadEmpresa(){
             if(descricaovagaElement) descricaovagaElement.textContent = empresaAtual.descricaovaga;
             if(tecnologiasElement) tecnologiasElement.textContent = empresaAtual.tecnologias.join(', ');
    }}};
+
 export function getEmpresasInfo() {
     let empresas: Empresa[] = JSON.parse(localStorage.getItem('empresas') || '[]');
     return empresas.map(empresa => {
@@ -106,28 +142,43 @@ export function getEmpresasInfo() {
             }
             return oculto;
         }
-     
+        document.addEventListener('DOMContentLoaded', (event: Event) => {
+            event.preventDefault();
+            const btnCandidatos = document.getElementById('btnCandidatos');
+            if(btnCandidatos) {
+                btnCandidatos.addEventListener('click', () => {
+                    let candidatosInfo = getCandidatosInfo();
+                    let candidatosInfoElement = document.getElementById('candidatosInfo') as HTMLElement;
+                    candidatosInfoElement = candidatosInfoElement ?? document.createElement('div');
+                    if(candidatosInfoElement) {
+                        candidatosInfoElement.innerHTML = '';
+                        candidatosInfo.forEach((info, index) => {
+                            let tecnologias = info.tecnologias;
+                            if (typeof tecnologias === 'string') {
+                                try {
+                                    tecnologias = JSON.parse(tecnologias);
+                                } catch(e) {
+                                    console.error('Erro ao fazer parse das tecnologias:', e);
+                                }
+                            }
+                            if (!Array.isArray(tecnologias)) {
+                                tecnologias = ['N/A'];
+                            }
+                            candidatosInfoElement.innerHTML += `
+                                <h2>Candidatos ${index + 1}</h2>
+                                <p>Nome: ${ocultarDados(info.nome)}<p>
+                                <p>Email: ${ocultarDados(info.email)}<p>
+                                <p>CPF: ${ocultarDados(info.cpf)}</p>
+                                <p>Data de nascimento:  ${ocultarDados(info.dataNascimento)}</p>
+                                <p>Estado: ${ocultarDados(info.estado)}</p>
+                                <p>Descrição Profissional: ${info.descricaoProfissional}</p>
+                                <p>Tecnologias: ${tecnologias ? tecnologias.join(', ') : 'N/A'}</p>
+                                <hr>
+                            `;
+                        });
+                    }
+                })
+            }
+        });
+        ;
         
-document.addEventListener('DOMContentLoaded', (event) => {
-    event.preventDefault();
-    document.getElementById('btnCandidatos')?.addEventListener('click', () => {
-        let candidatosInfo = getCandidatosInfo();
-        let candidatosInfoElement = document.getElementById('candidatosInfo') as HTMLElement;
-        candidatosInfoElement = candidatosInfoElement ?? document.createElement('div');
-        if(candidatosInfoElement) {
-            candidatosInfoElement.innerHTML = '';
-            candidatosInfo.forEach((info, index) => {
-                candidatosInfoElement.innerHTML += `
-                    <h2>Candidatos ${index + 1}</h2>
-                    <p>Nome: ${ocultarDados(info.nome)}<p>
-                    <p>Email: ${ocultarDados(info.email)}<p>
-                    <p>CPF: ${ocultarDados(info.cpf)}</p>
-                    <p>Data de nascimento:  ${ocultarDados(info.dataNascimento)}</p>
-                    <p>Estado: ${ocultarDados(info.estado)}</p>
-                    <p>Descrição Profissional: ${info.descricaoProfissional}</p>
-                    <p>Tecnologias: ${info.tecnologias ? info.tecnologias.join(', ') : 'N/A'}</p>
-                    <hr>
-                `;
-            });
-        }
-    })});

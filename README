@@ -1,8 +1,7 @@
 ::::lINKETINDER::::
 
-É uma aplicação Web, criada em TYPESCRIPT, utilizando WEBPACK, com o objetivo de fazer o link entre vagas e candidatos,
- as escuras, sem ambas saberem gênero, cor, idade, apenas visivel as recnologias e atribuiçoes, caso ambas clique no macth, o segredo acaba e ambas tornam visiveis candidato para a empresa e vice-versa;
-    para rodar o código tenha o webpack intalado e basta digitar no terminal 'npm start'.
+É uma aplicação Web, criada em TYPESCRIPT, utilizando WEBPACK, com o objetivo de fazer a conexão  entre empresas e suas vagas de trabalho com o candidato candidatos, as escuras, sem ambas saberem gênero, cor, idade, apenas visivel as recnologias e atribuiçoes, caso ambas clique no macth, o segredo acaba e ambas tornam visiveis candidato para a empresa e vice-versa;
+    Para rodar o código tenha o webpack intalado e digitar no terminal 'npm start'.
 
     OBS: Faltou entregar os gráficos que seriam exibidos no perfil da empresa e ficará concluido no kit 02, com 
     a autorização do Vitor.
